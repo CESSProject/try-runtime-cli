@@ -87,7 +87,7 @@ where
         .encode();
     //call::<(), Block, _>(ext, executor, "TryRuntime_execute_block", &payload).await?;
 
-    if try_state == frame_try_runtime::TryStateSelect::None {
+    if matches!(try_state, frame_try_runtime::TryStateSelect::None) {
         call::<(), Block, _>(ext, executor, "Core_execute_block", &next_block.encode()).await?;
     } else {
         call::<(), Block, _>(ext, executor, "TryRuntime_execute_block", &payload).await?;
